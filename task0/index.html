@@ -17,7 +17,16 @@
     .tk-futura-pt-condensed {
         font-family: "futura-pt-condensed", sans-serif;
     }
-    .moreInfo{
+    .backTop img{
+        width: 80px;
+        padding: 20px;
+        border-radius: 100%;
+        transition: all 0.3s 0s;
+        position: relative;
+        left: 46%;
+        top: 100px;
+    }
+    .moreInfo,.backTop{
         -webkit-transition: all .3s ease-in-out;
         -moz-transition: all .3s ease-in-out;
         -o-transition: all .3s ease-in-out;
@@ -34,7 +43,7 @@
 
 <body style="cursor: auto;">
     <header>
-        <div class="pageHeader">
+        <div class="pageHeader" id="pageHeader">
             <div class="background">
                 <div class="masking"></div>
                 <img src="img/bg.jpg" alt="background">
@@ -161,6 +170,9 @@
                     <span class="cd-date">Someday in the future</span>
                 </div>
             </div>
+            <a class="backTop" href="#pageHeader">
+                <img src="img/back.png">
+            </a>
         </section>
     </div>  
 

@@ -7,7 +7,7 @@
  jQuery(document).ready(function($) {
 
 
-   $('.moreInfo').on('click',function (e) {
+   $('.moreInfo,.backTop').on('click',function (e) {
 	    e.preventDefault();
 
 	    var target = this.hash,
@@ -19,7 +19,7 @@
 	        window.location.hash = target;
 	    });
 	});
-   
+
 });
 
 
