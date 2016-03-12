@@ -155,8 +155,18 @@ Main components
   clear: both;
 }
 .cd-timeline-content h2 {
-  color: #303e49;
+  color: #3f4c79;
+  font-weight: bold;
+
 }
+.cd-timeline-content h2 a{
+  color: #3f4c79;
+  transition: all 0.2s 0s;
+}
+.cd-timeline-content h2 a:hover{
+  color: #fff;
+}
+
 .cd-timeline-content p, .cd-timeline-content .cd-timeline-content .cd-date {
   font-size: 13px;
   font-size: 0.8125rem;
