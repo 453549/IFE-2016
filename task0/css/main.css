@@ -111,6 +111,10 @@ body{
     font-weight: bold;
 }
 
+.team-wrapper a {
+    color: #3f4c79;
+}
+
 .team-wrapper h4 {
     margin-top: 15px;
     font-size: 18px;
@@ -182,6 +186,23 @@ body{
     margin: 0 auto;    
 }
 
+.backTop img {
+    width: 90px;
+    padding: 20px;
+    transition: all 0.3s 0s;
+    position: relative;
+    left:98%;
+    bottom: -40px;
+    opacity: 0.8;
+}
+    
+.moreInfo, .backTop {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
 @media only screen and (max-width: 978px) {
     .team-wrapper a.twitter, .team-wrapper a.ownweb, .team-wrapper a.linkedin, .team-wrapper a.github {
 	    display: none;
@@ -216,6 +237,17 @@ body{
     }
 }
 
+@media only screen and (max-width: 480px) {
+	.team-wrapper img {
+	    width: 100%;
+        height: auto;
+    }
+    
+    .team-wrapper .view.zhou img {
+        width: 95%;
+    }
+}
+
 @media only screen and (max-width: 978px) {
     .team-wrapper .view {
         float: none !important;
@@ -224,6 +256,9 @@ body{
     .team_bio .view img {
         margin: 0 auto !important;
         top: 0 !important;
+    }
+    .backTop img {
+        left: 80%;
     }
 }
 
