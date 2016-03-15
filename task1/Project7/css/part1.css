@@ -69,12 +69,11 @@ part1
 }
 
 .content{
-	font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif
+	font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
 }
 
 #time-of-new-life{
 	height: 690px;
-	
 	background-image: url("../img/part1-background.png");
 	background-position: 0% 50%;
     background-repeat: no-repeat;
@@ -82,6 +81,7 @@ part1
     -webkit-background-size: cover;
     -o-background-size: cover;
     position: relative;
+    min-width: 1280px;
 }
 
 #time-of-new-life .background-filter{
@@ -130,8 +130,7 @@ part1
 }
 
 #intro .content{
-	width: 1280px;
-	border: 1px solid black;
+	min-width: 1280px;
 	margin: 0 auto;
 	letter-spacing: -10px;
 	
@@ -139,8 +138,34 @@ part1
 #intro .content div{
 	letter-spacing: 2px;
 	display: inline-block;
-	border: 1px solid black;
 	text-align: center;
-	min-width: 320px;
+	min-width: 319px;
+	width: 25%;
 	color: #787b83;
+	padding: 45px 0 60px 0;
+}
+
+#intro .content div:nth-last-child(n+2) p{
+	border-right: 2px solid #999695;
+}
+
+#intro .content img{
+	padding-bottom: 45px;
+}
+#intro .content p{
+	font-size: 0.9em;
+	line-height: 1.3;
+	padding-bottom: 20px;
+}
+#whats-more .content{
+	margin: 0 auto;
+	min-width: 1280px;
+	text-align: center;
+	background-color: #ededec;
+	padding: 95px 0;
+}
+#whats-more .content h1{
+	color: #867e7a;
+	font-size: 3.2em;
+	font-weight: 100;
 }
