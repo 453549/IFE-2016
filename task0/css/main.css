@@ -1,3 +1,9 @@
+body{
+    font-family: 'Microsoft YaHei',Arial, Helvetica, sans-serif;;
+}
+.fa-home,.fa-weibo,.fa-git,.fa-instagram{
+    color:white;
+}
 .middle {
     width: 100%;
     height: auto;
@@ -5,7 +11,6 @@
     margin-bottom: 20px;
     text-align: center;
     font-size: 60px;
-    font-family: "proxima_nova_regular", 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 .middle span {
@@ -19,7 +24,7 @@
 }
 
 .team-wrapper {
-    widht: 100%;
+    width: 100%;
     height: auto;
     overflow: hidden;
 }
@@ -101,26 +106,27 @@
 .team-wrapper h3 {
 	margin-top: 30px;
 	padding-top: 60px;
-    color: #000000;
-	font-size: 30px;
-	font-family: "proxima_nova_light", 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 400;
+    color: #3f4c79;
+	font-size: 36px;
+    font-weight: bold;
+}
+
+.team-wrapper a {
+    color: #3f4c79;
 }
 
 .team-wrapper h4 {
     margin-top: 15px;
     font-size: 18px;
     color: #a8a1a5;
-    font-family: "proxima_nova_light", 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: normal;
     text-transform: uppercase;
 }
 
 .team-wrapper p {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 150%;
-    font-family: "proxima_nova_light", 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 .team-wrapper.divider {
@@ -129,7 +135,7 @@
 }
 
 .team-wrapper a.twitter, .team-wrapper a.ownweb, .team-wrapper a.linkedin, .team-wrapper a.github {
-    background: #696969;
+    background: #3f4c79;
 	background-position: 0 0;
 	background-size: 41px auto;
 	z-index: 99999;
@@ -138,18 +144,21 @@
 	width: 41px;
     border-radius: 20px;
 	height: 41px;
+    transition: all 0.2s 0s;
 }
-
+.team-wrapper a.twitter:hover,.team-wrapper a.ownweb:hover,.team-wrapper a.github:hover,.team-wrapper a.linkedin:hover{
+    transform: scale(1.2);
+}
 .team-wrapper a.twitter:hover {
-    background: red;
+    background: #da3114;
 }
 
 .team-wrapper a.ownweb:hover {
-    background: #00FF00;
+    background: #dfc056;
 }
 
 .team-wrapper a.github:hover {
-    background: #FFFF00;
+    background: #138648;
 }
 
 .team-wrapper a.linkedin:hover {
@@ -159,7 +168,6 @@
 #timeline {
 	width: 100%;
     height: auto;
-    font-family: "proxima_nova_light", 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
 .footer {
@@ -169,7 +177,6 @@
     padding-bottom: 20px;
     background: rgba(15, 32, 88, 0.8);
     text-align: center;
-    font-family: 'Microsoft YaHei';
     font-size: 16px;
     color: #FFFFFF;
 }
@@ -177,6 +184,23 @@
 .footer .teamLogo img {
     width: 100px;
     margin: 0 auto;    
+}
+
+.backTop img {
+    width: 90px;
+    padding: 20px;
+    transition: all 0.3s 0s;
+    position: relative;
+    left:98%;
+    bottom: -40px;
+    opacity: 0.8;
+}
+    
+.moreInfo, .backTop {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 @media only screen and (max-width: 978px) {
@@ -213,6 +237,17 @@
     }
 }
 
+@media only screen and (max-width: 480px) {
+	.team-wrapper img {
+	    width: 100%;
+        height: auto;
+    }
+    
+    .team-wrapper .view.zhou img {
+        width: 95%;
+    }
+}
+
 @media only screen and (max-width: 978px) {
     .team-wrapper .view {
         float: none !important;
@@ -221,6 +256,9 @@
     .team_bio .view img {
         margin: 0 auto !important;
         top: 0 !important;
+    }
+    .backTop img {
+        left: 80%;
     }
 }
 
