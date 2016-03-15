@@ -22,6 +22,7 @@ header
 }
 
 #new-word{
+    font-family: "黑体", sans-serif;
 	margin-left: 5px;
 	line-height: 58px;
 	height: 58px;
@@ -58,7 +59,7 @@ header
 	background-size: 17px 17px;
 	width: 17px;
 	height: 17px;
-	vertical-align: middle;
+	vertical-align: text-bottom;
 	content: "";
 
 }
@@ -70,7 +71,8 @@ part1
 }
 
 .content{
-	
+	width: 1280px;
+	margin: 0 auto;
 }
 
 #time-of-new-life{
@@ -86,6 +88,7 @@ part1
 }
 
 #time-of-new-life .background-filter{
+	z-index: 0;
 	position: absolute;
 	width: 100%;
 	height: 100%;
@@ -93,19 +96,18 @@ part1
 }
 
 #time-of-new-life .content{
-	position: absolute;
-	top: 50%;
-	left: 10vw;
-	margin-top: -130px;
-	width: 500px;
+	position: relative;
+	padding-top: 300px;
+	padding-left: 100px;
 	height: 270px;
 	color: #ffffff;
+	width: 1000px;
 }
 
 #time-of-new-life h1{
 	font-size: 3.8em;
 	margin: 0;
-	font-weight: 200;
+	font-weight: 400;
 }
 
 #time-of-new-life p{
@@ -116,28 +118,27 @@ part1
 }
 
 #time-of-new-life a{
-	position: absolute;
-	left: 0;
-	bottom: 0;
+	margin-top: 60px;
+	color: #ffffff;
+	display: inline-block;
 	text-decoration: none;
 	text-align: center;
 	font-size: 2em;
 	letter-spacing: 8px;
 	line-height: 65px;
-	color: #ffffff;
 	background-color: #e74f4d;
 	height:  65px;
 	width: 331px
 }
 
 #intro .content{
-	min-width: 1280px;
+	width: 1280px;
 	margin: 0 auto;
 	letter-spacing: -10px;
 	
 }
 #intro .content div{
-	letter-spacing: 2px;
+	letter-spacing: 0;
 	display: inline-block;
 	text-align: center;
 	min-width: 319px;
@@ -153,20 +154,25 @@ part1
 #intro .content img{
 	padding-bottom: 45px;
 }
+
 #intro .content p{
+    font-family: "黑体","Microsoft YaHei", "Hiragino Sans GB", sans-serif;
 	font-size: 0.9em;
 	line-height: 1.3;
 	padding-bottom: 20px;
+}
+#whats-more {
+	background-color: #ededec;
 }
 #whats-more .content{
 	margin: 0 auto;
 	min-width: 1280px;
 	text-align: center;
-	background-color: #ededec;
 	padding: 95px 0;
 }
+
 #whats-more .content h1{
 	color: #867e7a;
 	font-size: 3.2em;
-	font-weight: 100;
+	font-weight: 400;
 }
