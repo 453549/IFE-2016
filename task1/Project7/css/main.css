@@ -71,85 +71,35 @@ body {
 }
 
 #join-us #join-form #join-info {
-    width: 600px;
+    width: 55%;
     height: auto;
     float: left;
     position: relative;
 }
 
-#join-us #join-form #join-info input {
-    border: 0;
-    width: 280px;
+#join-us #join-form #join-info input, textarea {
+    width: 40%;
     height: 40px;
-}
-
-#join-us #join-form #join-info #join-info-left {
-    width: 300px;
-    height: auto;
-    border: none;
-    background: rgb(255, 255, 255);
-    color: rgb(35, 24, 21);
-    position: relative;
-    float: left;
-    padding-top: 20px;
-    padding-right: 30px;
-}
-
-#join-us #join-form #join-info #join-info-left p {
-    font-size: 12px;
-    color: rgb(35, 24, 21);
-    padding: 15px 15px;
-}
-
-#join-us #join-form #join-info #join-info-left input {
     background: rgb(237, 237, 238);
-    margin-bottom: 20px;
-}
-
-#join-us #join-form #join-info #join-info-right {
-    width: 200px;
-    padding-top: 20px;
-    position: relative;
-    float: left;
-}
-
-#join-us #join-form #join-info #join-info-right p {
-    font-size: 12px;
     color: rgb(35, 24, 21);
-    float: left;
-    margin-top: 20px;
+    border: 0;
+    margin: 1% 1%;
+    padding-left: 1%;
 }
 
-#join-us #join-form #join-info #join-info-right input {
-    width: 150px;
-    height: auto;
-    float: left;
-    margin-top: 20px;
-} 
+#join-us #join-form #join-info textarea {
+    width: 84%;
+    height: 80px;
+    padding-top: 1%;
+}
 
-#join-us #join-form #join-info #join-info-right #input-address {
-    width: 100px;
-}   
-    
 #join-us #join-form #join-info #info-submit {
-    background: rgb(255, 255, 255);
-    padding: 0 50px;
-    margin: 0 150px;
+    width: 85.4%;
+    font-weight: bold;
 }
 
 #join-us #join-form #join-info #info-submit:hover {
     cursor: pointer;
-}
-
-#join-us #join-form #join-info #dreamlife p{
-    width: 300px;
-    font-size: 12px;
-    color: rgb(35, 24, 21);
-    padding: 20px 15px;
-}
-
-#join-us #join-form #join-info #dreamlife input {
-    margin: 10px 0;
 }
 
 #footer {
