@@ -1,0 +1,146 @@
+#part1{
+	min-width: 1160px;
+}
+/*-------------------------------------------------
+header
+-------------------------------------------------*/
+.header{
+	height: 58px;
+	margin: 0 auto;
+	padding: 0 60px;
+}
+
+.header *{
+	display: inline-block;
+}
+
+#header-icon{
+	vertical-align: middle;
+	height: 31px;
+	width: 31px;
+}
+
+#new-word{
+	margin-left: 5px;
+	line-height: 58px;
+	height: 58px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.nav{
+	float: right;
+}
+
+.nav a{
+	text-decoration: none;
+	line-height: 54px;
+	padding:0 20px;
+	color: #787b83;
+	font-size: 0.9em;
+	transition: all 0.5s ease;
+	border-bottom: 4px solid rgba(0,0,0,0);
+}
+
+.nav a:hover{
+	color: #e74f4d;
+	border-bottom: 4px solid #e74f4d;
+}
+
+#login{
+	color: #e74f4d;
+}
+
+#login:before{
+	background-image: url(../img/login.png);
+	display: inline-block;
+	background-size: 17px 17px;
+	width: 17px;
+	height: 17px;
+	vertical-align: middle;
+	content: "";
+
+}
+/*-------------------------------------------------
+part1
+-------------------------------------------------*/
+#part1 {
+	width: 100%;
+}
+
+.content{
+	font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif
+}
+
+#time-of-new-life{
+	height: 690px;
+	
+	background-image: url("../img/part1-background.png");
+	background-position: 0% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    position: relative;
+}
+
+#time-of-new-life .background-filter{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.2);
+}
+
+#time-of-new-life .content{
+	position: absolute;
+	top: 50%;
+	left: 10vw;
+	margin-top: -130px;
+	width: 500px;
+	height: 270px;
+	color: #ffffff;
+}
+
+#time-of-new-life h1{
+	font-size: 3.8em;
+	margin: 0;
+	font-weight: 200;
+}
+
+#time-of-new-life p{
+	padding-top: 20px;
+	line-height: 1.5;
+	font-size: 1.3em;
+	font-weight: 100;
+}
+
+#time-of-new-life a{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	text-decoration: none;
+	text-align: center;
+	font-size: 2em;
+	letter-spacing: 8px;
+	line-height: 65px;
+	color: #ffffff;
+	background-color: #e74f4d;
+	height:  65px;
+	width: 331px
+}
+
+#intro .content{
+	width: 1280px;
+	border: 1px solid black;
+	margin: 0 auto;
+	letter-spacing: -10px;
+	
+}
+#intro .content div{
+	letter-spacing: 2px;
+	display: inline-block;
+	border: 1px solid black;
+	text-align: center;
+	min-width: 320px;
+	color: #787b83;
+}
