@@ -1,5 +1,6 @@
 #part1{
-	min-width: 1160px;
+	min-width: 1280px;
+    font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
 }
 /*-------------------------------------------------
 header
@@ -7,7 +8,6 @@ header
 .header{
 	height: 58px;
 	margin: 0 auto;
-	padding: 0 60px;
 }
 
 .header *{
@@ -15,6 +15,7 @@ header
 }
 
 #header-icon{
+    padding-left: 50px;
 	vertical-align: middle;
 	height: 31px;
 	width: 31px;
@@ -25,17 +26,17 @@ header
 	line-height: 58px;
 	height: 58px;
 	font-size: 20px;
-	font-weight: bold;
 }
 
 .nav{
 	float: right;
+    padding-right: 45px;
 }
 
 .nav a{
 	text-decoration: none;
 	line-height: 54px;
-	padding:0 20px;
+	padding:0 19px;
 	color: #787b83;
 	font-size: 0.9em;
 	transition: all 0.5s ease;
@@ -69,7 +70,7 @@ part1
 }
 
 .content{
-	font-family: "Microsoft YaHei", "Hiragino Sans GB", sans-serif;
+	
 }
 
 #time-of-new-life{
@@ -146,7 +147,7 @@ part1
 }
 
 #intro .content div:nth-last-child(n+2) p{
-	border-right: 2px solid #999695;
+	border-right: 1px solid #999695;
 }
 
 #intro .content img{
