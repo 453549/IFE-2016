@@ -1,68 +1,242 @@
-#join-us {
-    height: 750px;
+body {
     width: 100%;
 }
 
-#contact-us {
-    height: 300px;
-    width: 100%;
+#join-us {
+    height: 750px;
+}
+
+#join-us #join-words {
+    clear: both;
+    text-align: center;
+    padding: 100px 0;
+}
+
+#join-us #join-words h3 {
+    font-family: "Microsoft YaHei";
+    font-size: 21px;
+    font-weight: bold;
+    color: rgb(50,51,51);
+    padding-bottom: 20px;
+}
+
+#join-us #join-words p {
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    color: rgb(170, 170, 170);
+    padding: 5px 0;
+}
+
+#join-us #join-form {
+    overflow: hidden;
+}
+
+#join-us #join-form #join-obey {
+    width: 290px;
+    padding-left: 12%;
+    padding-right: 75px;
+    float: left;
+    position: relative;
+}
+
+#join-us #join-form #join-obey dl {
+    height: auto;
+    padding: 20px 0;
+    font-family: "宋体";
+}
+
+#join-us #join-form #join-obey dt {
+    padding-bottom: 20px;
+}
+
+#join-us #join-form #join-obey dt p{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(35, 24, 21);
+}
+
+#join-us #join-form #join-obey dd a{
+    padding: 12px 0;
+    font-size: 12px;
+    text-decoration: none;
+    color: rgb(164, 165, 165);
+}
+
+#join-us #join-form #join-obey .more-clause {
+    float: right;
+}
+
+#join-us #join-form #join-obey .more-clause a{
+    color: rgb(35, 24, 21);
+}
+
+#join-us #join-form #join-info {
+    width: 600px;
+    height: auto;
+    float: left;
+    position: relative;
+}
+
+#join-us #join-form #join-info input {
+    border: 0;
+    width: 280px;
+    height: 40px;
+}
+
+#join-us #join-form #join-info #join-info-left {
+    width: 300px;
+    height: auto;
+    border: none;
+    background: rgb(255, 255, 255);
+    color: rgb(35, 24, 21);
+    position: relative;
+    float: left;
+    padding-top: 20px;
+    padding-right: 30px;
+}
+
+#join-us #join-form #join-info #join-info-left p {
+    font-size: 12px;
+    color: rgb(35, 24, 21);
+    padding: 15px 15px;
+}
+
+#join-us #join-form #join-info #join-info-left input {
+    background: rgb(237, 237, 238);
+    margin-bottom: 20px;
+}
+
+#join-us #join-form #join-info #join-info-right {
+    width: 200px;
+    padding-top: 20px;
+    position: relative;
+    float: left;
+}
+
+#join-us #join-form #join-info #join-info-right p {
+    font-size: 12px;
+    color: rgb(35, 24, 21);
+    float: left;
+    margin-top: 20px;
+}
+
+#join-us #join-form #join-info #join-info-right input {
+    width: 150px;
+    height: auto;
+    float: left;
+    margin-top: 20px;
+} 
+
+#join-us #join-form #join-info #join-info-right #input-address {
+    width: 100px;
+}   
+    
+#join-us #join-form #join-info #info-submit {
+    background: rgb(255, 255, 255);
+    padding: 0 50px;
+    margin: 0 150px;
+}
+
+#join-us #join-form #join-info #info-submit:hover {
+    cursor: pointer;
+}
+
+#join-us #join-form #join-info #dreamlife p{
+    width: 300px;
+    font-size: 12px;
+    color: rgb(35, 24, 21);
+    padding: 20px 15px;
+}
+
+#join-us #join-form #join-info #dreamlife input {
+    margin: 10px 0;
+}
+
+#footer {
+    height: 410px;
+    clear: both;
+    overflow: hidden;
+}
+
+#footer #footer-contact-us {
+    height: 365px;
     background: rgb(50, 53, 62);
     text-align: center;
     font-family: "宋体";
     color: rgb(255, 255, 255);
 }
 
-#contact-us h3 {
+#footer #footer-contact-us h3 {
     font-size: 21px;
     font-weight: auto;
     padding-top: 100px;
     padding-bottom: 10px;
 }
 
-#contact-us p {
+#footer #footer-contact-us p {
     padding: 5px;
     font-size: 12px;
 }
 
-#contact-us #contact-input {
-    width: 400px;
-    height: 40px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    padding-left: 10px;
-    font-family: "Microsoft YaHei";
+#footer #footer-contact-us #contact-form {
+    width: 500px;
+    height: 50px;
+    clear: both;
+    margin: 25px auto;    
 }
 
-#contact-us #contact-button {
+#footer #footer-contact-us #contact-form #contact-input {
+    width: 410px;
+    height: 40px;
+    padding-left: 10px;
+    font-family: "Microsoft YaHei";
+    float: left;
+}
+
+#footer #footer-contact-us #contact-form #contact-button {
     font-family: "Microsoft YaHei";
     font-size: 15px;
     text-decoration: none;
+    border: 0;
     color: rgb(224, 220, 221);
-    background: rgb(104, 97, 102);
-    
-    padding: 10px 20px;
+    background: rgb(104, 97, 102);   
+    padding: 13px 20px;
+    float: left;
 }
 
-#footer {
+#footer #footer-contact-us #contact-link {
+    padding: 10px 0;
+}
+
+#footer #footer-contact-us #contact-link a {
+    margin: 10px 10px;
+}
+
+#footer #footer-bottom {
     height: 50px;
-    width: 100%;
     bottom: 0;
-    font-family: "宋体";
-    font-size: 12px;
     background: rgb(47, 48, 56);
 }
 
-#footer a {
+#footer #footer-bottom a {
     color: rgb(207, 202, 203);
     text-decoration: none;
+    font-family: "宋体";
+    font-size: 12px;
     position: absolute;
     padding-top: 20px;
 }
 
-#footer #footer-left {
+#footer #footer-bottom #footer-left {
     left: 8%;
 }
 
-#footer #footer-right {
+#footer #footer-bottom #footer-right {
     right: 3%;
+}
+
+@media only screen and (max-width: 1280px) {
+    body {
+        width: 1280px;
+}
 }
