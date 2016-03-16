@@ -44,11 +44,20 @@ header
     border-bottom: 4px solid rgba(0,0,0,0);
 }
 
-.nav a:hover{
+.nav:hover>a{
+    color: #787b83;
+    border-bottom: 4px solid rgba(0,0,0,0); 
+}
+
+.nav>a:hover{
     color: #e74f4d;
     border-bottom: 4px solid #e74f4d;
 }
 
+.nav .focused{
+    color: #e74f4d;
+    border-bottom: 4px solid #e74f4d;
+}
 #login{
     color: #e74f4d;
 }
