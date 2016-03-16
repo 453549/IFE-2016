@@ -91,6 +91,7 @@ body {
     width: 84%;
     height: 80px;
     padding-top: 1%;
+    resize:none;
 }
 
 #join-us #join-form #join-info #info-submit {
