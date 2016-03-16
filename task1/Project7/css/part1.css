@@ -40,7 +40,7 @@ header
     padding:0 19px;
     color: #787b83;
     font-size: 0.9em;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
     border-bottom: 4px solid rgba(0,0,0,0);
 }
 
@@ -78,7 +78,7 @@ part1
 #time-of-new-life{
     height: 690px;
     background-image: url("../img/part1-background.png");
-    background-position: 0% 50%;
+    background-position: 0% 10%;
     background-repeat: no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
@@ -98,10 +98,9 @@ part1
 #time-of-new-life .content{
     position: relative;
     padding-top: 230px;
-    padding-left: 100px;
     height: 270px;
     color: #ffffff;
-    width: 1000px;
+    width: 1020px;
 }
 
 #time-of-new-life h1{
@@ -168,7 +167,7 @@ part1
     margin: 0 auto;
     min-width: 1280px;
     text-align: center;
-    padding: 95px 0;
+    padding: 72px 0;
 }
 
 #whats-more .content h1{
