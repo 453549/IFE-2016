@@ -1,0 +1,44 @@
+.dashboard{
+	width: 1020px;
+    font-family: "黑体";
+}
+
+.radiu-panel{
+    margin-top: 8px;
+    display: inline-block;
+	border: 1px solid #cdcacd;
+    height: 355px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px #cdcacd;
+    float: left;
+}
+.penel-content{
+    height: 315px;
+    border-radius: 0 0 5px 5px;
+}
+
+.panel-title{
+    padding-left: 20px;
+    display: block;
+    color: #abaaaa;
+    background-color: #f4f5f6;
+    line-height: 40px;
+    font-size: 0.8em;
+    border-radius: 5px 5px 0 0;
+    border-bottom: 1px solid #e6e6e8;
+}
+
+#panel1{
+  width: 530px;
+}
+#panel2{
+  width: 350px;
+  margin-left: 8px;
+}
+#panel3{
+  width: 350px;
+}
+#panel4{
+  width: 530px;
+  margin-left: 8px;
+}
