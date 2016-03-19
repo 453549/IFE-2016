@@ -1,7 +1,7 @@
-header{
+header,.side-part{
 	font-family: '黑体';
 }
-/*顶端淡蓝色条*/
+/*start header*/
 header{
 	min-width: 1266px;
 	background: #2189bf;
@@ -61,5 +61,55 @@ header{
 .login .icon-login img{
 	display: block;
 }
-/*end 顶端淡蓝色条*/
+/*end header*/
+
+/*start side-part*/
+.side-part{
+	width: 260px;
+	background: #2a2e3d;
+	height: 100%;
+	color:#67778b;
+}
+.user-info{
+	width: 120px;
+	margin:0 auto;
+	height: 145px;
+}
+.user{
+	padding-top: 16px;
+
+}
+.user img ,.user p{
+	display: inline-block;
+	vertical-align: middle;
+}
+.user p{
+	margin-left: 10px;
+	color: #fff;
+	font-size: 18px;
+}
+.user-collect,.user-fans{
+	display: inline-block;
+	text-align: center;
+	margin-top: 24px;
+	line-height: 18px;
+}
+.split-line{
+	display: inline-block;
+	height: 28px;
+	width: 1px;
+	background: #67778b;
+	margin: 0 15px;
+}
+.personal-report{
+	background: #383d4e;
+}
+
+.personal-report,.personal-collect,.my-share,.pic-storage,.growth-record,.account-info{
+	padding-left: 45px;
+}
+.personal-collect,.my-share,.pic-storage,.growth-record,.account-info{
+	height: 40px;
+}
+/*end side-part*/
 
