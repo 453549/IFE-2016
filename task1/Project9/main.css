@@ -3,7 +3,7 @@
     font-family: "黑体";
 }
 
-.radiu-panel{
+.radius-panel{
     margin-top: 8px;
     display: inline-block;
 	border: 1px solid #cdcacd;
@@ -38,6 +38,7 @@
 }
 #panel3{
   width: 350px;
+  overflow: hidden;
 }
 #panel4{
   width: 530px;
@@ -185,4 +186,216 @@
 }
 .clearfix{
   zoom: 1;
+.panel3-top {
+    width: 320px;
+    height: auto;
+    margin: 10px 15px;
+    border-bottom: 1px solid rgb(178, 207, 237);
+}
+
+.panel3-top #year, #day, #month {
+    width: 70px;
+    height: 20px;
+    border: 1px solid rgb(203, 203, 204);
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: rgb(83, 83, 83);    
+}
+
+.panel3-top #year {
+    margin: 0 5px;
+}
+
+.panel3-top #month {
+    width: 70px;
+}
+
+.panel3-top #day {
+    width: 75px;
+}
+
+.panel3-top input {
+    background: #FFFFFF;
+    border: 1px solid rgb(203, 203, 204);
+}
+
+.calendar {
+	width: 100%;
+	height: 250px;
+	background: #FFFFFF;
+    display: inline-block;
+    margin: 0 auto;
+}	
+
+.calendar table {
+    width: 320px;
+	text-align: center;	
+    margin: 0 auto;  
+    font-size: 11.36px;
+
+}
+
+.calendar tr {
+	width: auto;
+}
+
+.calendar .tr-content {
+    height: 40px;
+}
+
+.calendar .firstline {
+    width: 320px;
+    height: 20px;
+    border-bottom: 1px solid rgb(227, 227, 228);
+}
+
+.calendar .firstline td {
+    width: 40px;
+    height: 20px;
+    margin: 0;
+    padding: 1px;
+}
+
+.calendar .tr-content td {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 1px;
+}
+
+.calendar .tr-content .holiday, .special-day {
+    color: rgb(202, 22, 29);
+}
+
+.calendar p {
+    margin: 0;
+    padding: 0;
+}
+
+.calendar .today {
+	background: #28004D;
+	color: #FFFFFF;
+}
+
+.calendar .chosen {
+	border: 1px solid rgb(244, 194, 29);
+}
+
+.car-table {
+    width: 100%;
+    height: auto;
+    padding-top: 18px;
+}
+
+.car-table table {
+    width: 450px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 12px;
+    border-collapse:collapse;
+    border-spacing:0;
+    border-left:1px solid rgb(203, 203, 204);
+    border-top:1px solid rgb(203, 203, 204);
+}
+
+.car-table table tr, .car-table table th {
+    height: 25px;
+}
+
+.car-table table tr, .car-table table td , .car-table table th{
+    border-right:1px solid rgb(203, 203, 204);
+    border-bottom:1px solid rgb(203, 203, 204);
+}
+
+.car-table table th {
+    font-weight: normal;
+}
+
+.car-table table td:nth-child(1) {
+    width: 65px;
+}
+
+.car-table table td:nth-child(2) {
+    width: 90px;
+}
+
+.car-table table th:nth-child(3) {
+    text-align: left;
+    padding-left: 30px;
+}
+
+.car-table table td:nth-child(3) {
+    text-align: left;
+    padding-left: 35px;
+}
+.car-table table tr:not(:first-child):hover {
+    background: rgb(244, 245, 246);
+}
+
+.car-table table .progress-bar {
+    display: inline-block;
+    width: 168px;
+    height: 4px;
+    background: rgb(220, 220, 220);
+    margin-left: 20px;
+}
+
+#probar1 {
+    width: 142px;
+    height: 100%;
+    background: rgb(237, 110, 82);
+}
+
+#probar2 {
+    width: 122px;
+    height: 100%;
+    background: rgb(239, 129, 80);
+}
+
+#probar3 {
+    width: 104px;
+    height: 100%;
+    background: rgb(241, 159, 79);
+}
+
+#probar4 {
+    width: 98px;
+    height: 100%;
+    background: rgb(127, 203, 240);
+}
+
+#probar5 {
+    width: 84px;
+    height: 100%;
+    background: rgb(127, 203, 240);
+}
+
+#probar6 {
+    width: 80px;
+    height: 100%;
+    background: rgb(127, 203, 240);
+}
+
+#probar7 {
+    width: 76px;
+    height: 100%;
+    background: rgb(127, 203, 240);
+}
+
+#probar8 {
+    width: 62px;
+    height: 100%;
+    background: rgb(127, 203, 240);
+}
+
+#probar9 {
+    width: 60px;
+    height: 100%;
+    background: rgb(127, 203, 240);
+}
+
+#probar10 {
+    width: 56px;
+    height: 100%;
+    background: rgb(127, 203, 240);
 }
