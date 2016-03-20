@@ -1,6 +1,7 @@
 .dashboard{
 	width: 1020px;
     font-family: "黑体";
+    display: inline-block;
 }
 
 .radius-panel{
