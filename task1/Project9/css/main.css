@@ -1,5 +1,5 @@
 .dashboard{
-	width: 1020px;
+  width: 1020px;
     font-family: "黑体";
     display: inline-block;
 }
@@ -7,7 +7,7 @@
 .radius-panel{
     margin-top: 8px;
     display: inline-block;
-	border: 1px solid #cdcacd;
+  border: 1px solid #cdcacd;
     height: 355px;
     border-radius: 5px;
     box-shadow: 0 0 2px #cdcacd;
@@ -80,23 +80,23 @@
 }
 
 .calendar {
-	width: 100%;
-	height: 250px;
-	background: #FFFFFF;
+  width: 100%;
+  height: 250px;
+  background: #FFFFFF;
     display: inline-block;
     margin: 0 auto;
-}	
+} 
 
 .calendar table {
     width: 320px;
-	text-align: center;	
+  text-align: center; 
     margin: 0 auto;  
     font-size: 11.36px;
 
 }
 
 .calendar tr {
-	width: auto;
+  width: auto;
 }
 
 .calendar .tr-content {
@@ -133,12 +133,12 @@
 }
 
 .calendar .today {
-	background: #28004D;
-	color: #FFFFFF;
+  background: #28004D;
+  color: #FFFFFF;
 }
 
 .calendar .chosen {
-	border: 1px solid rgb(244, 194, 29);
+  border: 1px solid rgb(244, 194, 29);
 }
 
 .car-table {
