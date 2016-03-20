@@ -69,11 +69,14 @@ header{
 	background: #2a2e3d;
 	height: 100%;
 	color:#67778b;
+	font-size: 14px;
+
+	display: inline-block;
 }
 .user-info{
 	width: 120px;
 	margin:0 auto;
-	height: 145px;
+	height: 150px;
 }
 .user{
 	padding-top: 16px;
@@ -101,15 +104,42 @@ header{
 	background: #67778b;
 	margin: 0 15px;
 }
-.personal-report{
+.unfold-item{
 	background: #383d4e;
 }
 
-.personal-report,.personal-collect,.my-share,.pic-storage,.growth-record,.account-info{
+.menu-item{
 	padding-left: 45px;
-}
-.personal-collect,.my-share,.pic-storage,.growth-record,.account-info{
 	height: 40px;
+	line-height: 40px;
+
+	transition: color 0.2s;
+}
+.menu-item:hover{
+	background: #383d4e;
+	color: #fff;
+}
+.menu-item img,.menu-item p{
+	display: inline-block;
+}
+.unfold-content{
+	padding-left: 70px;
+}
+.file p{
+	display: inline-block;
+}
+.document-1 p{
+	display: inline-block;
+}
+.file,.document-1{
+	height: 30px;
+	transition: color 0.2s;
+}
+.document-1{
+	padding-left: 38px;
+}
+.file:hover,.document-1:hover{
+	color: #fff;
 }
 /*end side-part*/
 
