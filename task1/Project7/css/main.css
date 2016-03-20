@@ -667,9 +667,12 @@ part1
     text-decoration: none;
     border: 0;
     color: rgb(224, 220, 221);
-    background: rgb(104, 97, 102);   
-    padding: 13px 20px;
+    background: rgb(104, 97, 102);  
+    padding: 11px 18px;
+    -webkit-padding-before: 13px;
+    -webkit-padding-after: 13px;
     float: left;
+    pointer: cursor;
 }
 
 #footer #footer-contact-us #contact-link {
