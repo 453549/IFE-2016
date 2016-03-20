@@ -7,11 +7,12 @@
 .radius-panel{
     margin-top: 8px;
     display: inline-block;
-  border: 1px solid #cdcacd;
+     border: 1px solid #cdcacd;
     height: 355px;
     border-radius: 5px;
     box-shadow: 0 0 2px #cdcacd;
     float: left;
+    background-color: #fff; 
 }
 .penel-content{
     height: 315px;
@@ -165,6 +166,7 @@
 .car-table table tr, .car-table table td , .car-table table th{
     border-right:1px solid rgb(203, 203, 204);
     border-bottom:1px solid rgb(203, 203, 204);
+    line-height: 25px;
 }
 
 .car-table table th {
@@ -407,8 +409,7 @@ body{
     font-family: '黑体';
     background-color: #EDEDEC;
 }
-#qyh{
-  margin-left: 65px;
+#qyh {
   width: 891px;
   padding-top: 19px;
   height: 280px;
