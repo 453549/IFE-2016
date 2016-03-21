@@ -644,7 +644,7 @@ body{
 .priceList ul li:hover::after{
   content: '';
   position: absolute;
-  width: 111px;
+  width: 108px;
   height: 4px;
   background: #468AC9;
   top: 0px;
