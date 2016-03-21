@@ -1,4 +1,4 @@
-header,.side-part{
+header,.side-part,.breadcrumb{
 	font-family: '黑体';
 	vertical-align: top;
 }
@@ -148,3 +148,25 @@ header{
 	color: #fff;
 }
 /*end side-part*/
+/*start breadcrumb*/
+.content-container{
+	display: inline-block;
+	margin-left: -8px;
+	width: -webkit-calc(100% - 260px);
+}
+.breadcrumb{
+	display: inline-block;
+	padding: 10px 20px;
+	width: 100%;
+	background: #fff;
+}
+.breadcrumb p{
+	font-size: 14px;
+	color: #b0b0b0;
+	display: inline-block;
+}
+.breadcrumb p:hover{
+	color: #2189bf;
+	cursor: pointer;
+}
+/*end breadcrumb*/
