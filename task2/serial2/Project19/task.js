@@ -100,17 +100,17 @@ window.onload = function() {
         }
     }
     
-    function sleep(milliseconds) {
+    /*function sleep(milliseconds) {
         var start = new Date().getTime();
         for (var i = 0; i < 1e7; i++) {
             if ((new Date().getTime() - start) > milliseconds){
                 break;
             }
         }
-    }
+    }*/
     
     //sorting function;
-    function QuickSort(left, right) {
+    /*function QuickSort(left, right) {
         if(left >= right) return;
         var i = left, j = right;
         var temp = queue.str[i];
@@ -132,6 +132,7 @@ window.onload = function() {
             queue.str[i] = queue.str[j];
             queue.str[j] = tempInt;
             queue.paint();
+            sleep(50);
         }
 
         //apply quicksort recursively
@@ -139,6 +140,29 @@ window.onload = function() {
         sleep(50);
         QuickSort(j + 1, right);
         sleep(50);
+    }*/
+    
+    //turn to bubblesort
+    function BubbleSort() {
+        var Clock;
+        var count = 0, i = 0;
+        console.log(queue.str.length)
+        Clock = setInterval(function() {
+            if (count >= queue.str.length) {
+                clearInterval(Clock);
+            }
+            if (i == queue.str.length - 1 - count) {
+                i = 0;
+                count++;
+            }
+            if (queue.str[i] > queue.str[i + 1]) {
+                var temp = queue.str[i];
+                queue.str[i] = queue.str[i + 1];
+                queue.str[i + 1] = temp;
+                queue.paint();
+            }
+            i++;
+        }, 100);
     }
     
     //为4个按钮绑定函数
@@ -170,6 +194,6 @@ window.onload = function() {
     addEvent(buttonList[3], "click", function(){queue.leftPop()});
     addEvent(buttonList[4], "click", function(){queue.rightPop()});
     addEvent(buttonList[5], "click", function() {
-        QuickSort(0, queue.str.length - 1);
+        BubbleSort();
     })
 }
