@@ -22,8 +22,9 @@ function initTree(level){
     rootView.innerHTML = '';
     renderBinTree(root, rootView);
 
-    //当树渲染完成后再绑定遍历按钮的事件。
+    //记录动画的setInterval ID，取消动画的时候清除对应的setInterval
     var preAnimate;
+    //当树渲染完成后再绑定遍历按钮的事件。
     document.getElementById('preorderTraversal')
             .addEventListener('click', function () {
                 cleanAnimation(preAnimate);
