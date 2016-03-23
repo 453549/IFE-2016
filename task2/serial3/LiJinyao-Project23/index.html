@@ -6,7 +6,7 @@
     <style>
         body{
             margin: 0;
-            padding: 0;
+            padding: 10px 0 0 0;
         }
         #root{
             display: flex;
@@ -35,6 +35,10 @@
         #highlight{
             background-color: sienna;
         }
+        #searchResult{
+            display: inline-block;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -43,6 +47,7 @@
     <input id="searchText"type="text" title="Search">
     <button id="preordersearchBtn">先序搜索</button>
     <button id="postordersearchBtn">后序搜索</button>
+    <p id="searchResult"> </p>
     <div id="root">
     </div>
 

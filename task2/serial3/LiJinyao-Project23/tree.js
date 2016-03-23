@@ -65,20 +65,32 @@ function initTree(data){
         // cleanAnimation(preAnimate);
         // preAnimate = searchTree(traversal.preorderTraversal, data);
         var searchResult = searchTree(traversal.preorderTraversal, data);
-        animator.animateTraverse(searchResult.result, searchResult.isFindTarget);
+        animator.animateTraverse(searchResult.result, searchResult.isFindTarget, function () {
+            if(searchResult.isFindTarget){
+                $('searchResult').innerHTML = '找到 '+ searchResult.target;
+            }else{
+                $('searchResult').innerHTML = '没有找到 ' + searchResult.target;
+            }
+        });
     });
 
     addClickEvent($('postordersearchBtn'), function () {
         // cleanAnimation(preAnimate);
         // preAnimate = searchTree(traversal.postorderTraversal, data);
+        $('searchResult').innerHTML = '';
         var searchResult = searchTree(traversal.postorderTraversal, data);
-        animator.animateTraverse(searchResult.result, searchResult.isFindTarget);
+        animator.animateTraverse(searchResult.result, searchResult.isFindTarget, function () {
+            if(searchResult.isFindTarget){
+                $('searchResult').innerHTML = '找到 '+ searchResult.target;
+            }else{
+                $('searchResult').innerHTML = '没有找到 ' + searchResult.target;
+            }
+        });
     });
 }
 
 //搜索内容，生成搜索队列
 function searchTree(queryMethod,data) {
-
     var searchTarget = $('searchText').value;
     var queue = queryMethod(data);
     var len = queue.length;
@@ -93,7 +105,7 @@ function searchTree(queryMethod,data) {
             break;
         }
     }
-    return {result: queue.slice(start, end +1), isFindTarget: findTarget};
+    return {result: queue.slice(start, end +1), isFindTarget: findTarget, target: searchTarget};
 }
 
 var $ = function (element) {
@@ -162,7 +174,7 @@ var TreeAnimator = function () {
         }
     }
 
-    this.animateTraverse = function (traverseQueue, highlightLast){
+    this.animateTraverse = function (traverseQueue, highlightLast, callBack){
         cleanAnimation();
         var start = 0;
         var end = traverseQueue.length;
@@ -186,6 +198,7 @@ var TreeAnimator = function () {
                     animatingElement = traverseQueue[end-1];
                 }
                 console.log('animate done');
+                callBack();
             }
         }, 500);
     };
