@@ -9,18 +9,43 @@ function initTree(data){
     //当树渲染完成后再绑定遍历按钮的事件。
     addClickEvent($('preorderTraversal'), function () {
         cleanAnimation(preAnimate);
-        preAnimate = animateTraverse(traversal.preorderTraversal(root));
-    });
-
-    addClickEvent($('inorderTraversal'), function () {
-        cleanAnimation(preAnimate);
-        preAnimate = animateTraverse(traversal.inorderTraversal(root));
+        preAnimate = animateTraverse(traversal.preorderTraversal(data));
     });
 
     addClickEvent($('postorderTraversal'), function () {
         cleanAnimation(preAnimate);
-        preAnimate = animateTraverse(traversal.postorderTraversal(root));
+        preAnimate = animateTraverse(traversal.postorderTraversal(data));
     });
+
+    addClickEvent($('preordersearchBtn'), function () {
+        cleanAnimation(preAnimate);
+        preAnimate = searchTree(traversal.preorderTraversal, data);
+    });
+
+    addClickEvent($('postordersearchBtn'), function () {
+        cleanAnimation(preAnimate);
+        preAnimate = searchTree(traversal.postorderTraversal, data);
+    });
+}
+
+//先搜索内容，生成搜索队列，再用遍历的方法遍历搜索队列
+function searchTree(queryMethod,data) {
+
+    var searchTarget = $('searchText').value;
+    var queue = queryMethod(data);
+    var len = queue.length;
+    var start=0, end=0;
+
+    var findTarget = false;
+    for(var i = 0; i < len; i++){
+        end = i;
+        if(queue[i].getAttribute('data') == searchTarget){
+            findTarget = true;
+            console.log('find search!');
+            break;
+        }
+    }
+    return animateSearch(queue.slice(start, end+1), findTarget);
 }
 
 var $ = function (element) {
@@ -46,9 +71,14 @@ function cleanAnimation(preAnimate) {
     if(focus){
         focus.id = '';
     }
+
+    focus = $('highlight');
+    if(focus){
+        focus.id = '';
+    }
 }
 
-//将json渲染到网页
+//将json树渲染到网页
 function renderTree(data, parentElement){
     // var data = {
     //     'root': {
@@ -71,51 +101,67 @@ function renderTree(data, parentElement){
     var key;
     var treeView;
     for(key in data){
-        if(key != 'view'){
-            treeView = document.createElement('div');
-            treeView.className='child';
-            treeView.innerHTML = key;
-            parentElement.appendChild(treeView);
-            data[key].view = treeView;
-            renderTree(data[key], treeView);
+        if(data.hasOwnProperty(key)){
+            if(key != 'view'){
+                treeView = document.createElement('div');
+                treeView.className='child';
+                treeView.innerHTML = key;
+                parentElement.appendChild(treeView);
+                data[key].view = treeView;
+                data[key].view.setAttribute('data', key.toString());
+                renderTree(data[key], treeView);
+            }
         }
-
     }
-
 }
 
-//生成二叉树先序遍历序列
+//生成二叉树遍历序列
 var traversal = {
-    inorderTraversal: function inorderTraversal(root){
+    preorderTraversal: function preorderTraversal(root){
         var traverseQueue = [];
         function genTraverseQueue(root) {
-            if(root != null){
-                genTraverseQueue(root.left);
-                traverseQueue.push(root);
-                genTraverseQueue(root.right);
+            var key;
+            traverseQueue.push(root.view);
+            for(key in root){
+
+                if(key != 'view'){
+                    if(root.hasOwnProperty(key)){
+
+                        genTraverseQueue(root[key]);
+                    }
+                }
+
             }
         }
         genTraverseQueue(root);
+        //data第一次访问view的时候为undefined。删除第一个元素
+        traverseQueue.shift();
         return traverseQueue;
     },
 
     postorderTraversal: function postorderTraversal(root){
         var traverseQueue = [];
         function genTraverseQueue(root) {
-            if(root != null){
-                genTraverseQueue(root.left);
-                genTraverseQueue(root.right);
-                traverseQueue.push(root);
+            var key;
+            for(key in root){
+                if(key != 'view'){
+                    if(root.hasOwnProperty(key)){
+                        genTraverseQueue(root[key]);
+                    }
+                }
             }
+            traverseQueue.push(root.view);
         }
         genTraverseQueue(root);
+        //data第一次访问view的时候为undefined。删除最后一个元素
+        traverseQueue.pop();
         return traverseQueue;
     }
 };
 
 
 //动画显示二叉树遍历序列
-function animateTraverse(traverseQueue){
+function animateTraverse(traverseQueue, highlightLast){
     var start = 0;
     var time;
     var end = traverseQueue.length;
@@ -128,15 +174,22 @@ function animateTraverse(traverseQueue){
         }
         if(start < end){
             //traverseQueue[start].view.classList.add('focus');
-            traverseQueue[start].view.id='focus';
-            preNode =traverseQueue[start].view;
+            traverseQueue[start].id='focus';
+            preNode =traverseQueue[start];
             start++;
         }else{
             clearInterval(time);
+            if(highlightLast){
+                traverseQueue[end-1].id='highlight';
+            }
             console.log('animate done');
         }
     }, 500);
     return time;
+}
+
+function animateSearch(searchQueue, highlightLast){
+    return animateTraverse(searchQueue, highlightLast);
 }
 
 function init() {
@@ -150,7 +203,9 @@ function init() {
                 'b1': {
                     'b1.1': {},
                     'b1.2': {},
-                    'b1.3': {}
+                    'b1.3': {
+                        'b1.3.1': {}
+                    }
                 },
                 'b2': {
                     'b2.1': {}

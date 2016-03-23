@@ -13,7 +13,6 @@
             flex-flow: row wrap;
             flex-direction: row;
             /*定义空余空间的分配*/
-            justify-content: space-around;
             align-items: stretch;
             height: 400px;
         }
@@ -25,7 +24,7 @@
             display: flex;
             flex-grow: 1;
             border: 1px solid red;
-            margin: 10px;
+            margin: 30px;
             width: auto;
             background-color: #fff;
             transition: background-color 0.3s ease;
@@ -33,12 +32,17 @@
         #focus{
             background-color: aqua;
         }
+        #highlight{
+            background-color: sienna;
+        }
     </style>
 </head>
 <body>
     <button id="preorderTraversal">先序遍历</button>
-    <button id="inorderTraversal">中序遍历</button>
     <button id="postorderTraversal">后序遍历</button>
+    <input id="searchText"type="text" title="Search">
+    <button id="preordersearchBtn">先序搜索</button>
+    <button id="postordersearchBtn">后序搜索</button>
     <div id="root">
     </div>
 
