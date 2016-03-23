@@ -1,42 +1,11 @@
-//二叉树结点的数据结构
-function BinTree(left, right, view, value) {
-    this.left = left;
-    this.right = right;
-    this.view = view;
-    this.child = [];
-    this.value = value;
-}
-
-//返回一棵高度为level的完全二叉树
-function genBinTree(data){
-    var node = new BinTree(null, null, level);
-    for(var i = 0; i < data.length; i++){
-        if(typeof data[i] == 'string'){
-            node.child.value = data[i];
-        }else{
-            node.child.value = i+1;
-        }
-
-
-    }
-    if(level > 0){
-        node.left = genBinTree(level-1);
-        node.right = genBinTree(level-1);
-    }
-return node;
-}
-
-//'China', 'Afghanistan', 'Aland Islands', 'Bahamas', 
- //               'Bermuda', 'Burundi', 'Chad', 'Christmas Islands', 'Cote D\'Ivoire', 'Croatia', 'Croatia'
 //初始化一个二叉树并绑定事件
 function initTree(data){
-    var root = genBinTree(data);
+
     var rootView = document.getElementById('root');
     rootView.innerHTML = '';
-    renderBinTree(root, rootView);
-    
-    //记录动画的setInterval ID，取消动画的时候清除对应的setInterval
+    renderTree(data,rootView);
     var preAnimate;
+
     //当树渲染完成后再绑定遍历按钮的事件。
     addClickEvent($('preorderTraversal'), function () {
         cleanAnimation(preAnimate);
@@ -79,34 +48,44 @@ function cleanAnimation(preAnimate) {
     }
 }
 
-//将二叉树渲染到网页
-function renderBinTree(root, parentElement) {
-    if(root){
-        var treeView = document.createElement('div');
-        treeView.className='child';
-        root.view = treeView;
-        parentElement.appendChild(treeView);
-        renderBinTree(root.left, treeView);
-        renderBinTree(root.right, treeView);
+//将json渲染到网页
+function renderTree(data, parentElement){
+    // var data = {
+    //     'root': {
+    //         'a': {
+    //             'a1': 'a1',
+    //             'a2': 'a2'
+    //         },
+    //         'b': {
+    //             'b1': {
+    //                 'b1.1': 'b1.1',
+    //                 'b1.2': 'b1.2',
+    //                 'b1.3': 'b1.3'
+    //             },
+    //             'b2': {
+    //                 'b2.1': 'b2.1'
+    //             }
+    //         }
+    //     }
+    // };
+    var key;
+    var treeView;
+    for(key in data){
+        if(key != 'view'){
+            treeView = document.createElement('div');
+            treeView.className='child';
+            treeView.innerHTML = key;
+            parentElement.appendChild(treeView);
+            data[key].view = treeView;
+            renderTree(data[key], treeView);
+        }
+
     }
+
 }
 
 //生成二叉树先序遍历序列
 var traversal = {
-    preorderTraversal: function preorderTraversal(root){
-        var traverseQueue = [];
-        function genTraverseQueue(root) {
-            if(root != null){
-                //root.view.classList.add('focus');
-                traverseQueue.push(root);
-                genTraverseQueue(root.left);
-                genTraverseQueue(root.right);
-            }
-        }
-        genTraverseQueue(root);
-        return traverseQueue;
-    },
-
     inorderTraversal: function inorderTraversal(root){
         var traverseQueue = [];
         function genTraverseQueue(root) {
@@ -162,19 +141,24 @@ function animateTraverse(traverseQueue){
 
 function init() {
     var data = {
-        'a': ['a1', 'a2', 'a[3'],
-        'b': {
-            'b1': ['b1.1', 'b1.2', 'b1.3', 'b1.4'],
-            'b2': ['b2.1', 'b2.2']
+        'root': {
+            'a': {
+                'a1': {},
+                'a2': {}
+            },
+            'b': {
+                'b1': {
+                    'b1.1': {},
+                    'b1.2': {},
+                    'b1.3': {}
+                },
+                'b2': {
+                    'b2.1': {}
+                }
+            }
         }
     };
-    for (key in data) {
-        if(data.hasOwnProperty(key)){
-            console.log(key);
-        }
-
-    }
-    //initTree(valueSet);
+    initTree(data);
 }
 
 init();
