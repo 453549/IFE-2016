@@ -42,7 +42,7 @@ var traversal = {
     }
 };
 
-//初始化一个二叉树并绑定事件
+//初始化一棵树并绑定事件
 function initTree(data){
 
     var rootView = document.getElementById('root');
