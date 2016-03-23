@@ -1,121 +1,4 @@
-//初始化一个二叉树并绑定事件
-function initTree(data){
-
-    var rootView = document.getElementById('root');
-    rootView.innerHTML = '';
-    renderTree(data,rootView);
-    var preAnimate;
-
-    //当树渲染完成后再绑定遍历按钮的事件。
-    addClickEvent($('preorderTraversal'), function () {
-        cleanAnimation(preAnimate);
-        preAnimate = animateTraverse(traversal.preorderTraversal(data));
-    });
-
-    addClickEvent($('postorderTraversal'), function () {
-        cleanAnimation(preAnimate);
-        preAnimate = animateTraverse(traversal.postorderTraversal(data));
-    });
-
-    addClickEvent($('preordersearchBtn'), function () {
-        cleanAnimation(preAnimate);
-        preAnimate = searchTree(traversal.preorderTraversal, data);
-    });
-
-    addClickEvent($('postordersearchBtn'), function () {
-        cleanAnimation(preAnimate);
-        preAnimate = searchTree(traversal.postorderTraversal, data);
-    });
-}
-
-//先搜索内容，生成搜索队列，再用遍历的方法遍历搜索队列
-function searchTree(queryMethod,data) {
-
-    var searchTarget = $('searchText').value;
-    var queue = queryMethod(data);
-    var len = queue.length;
-    var start=0, end=0;
-
-    var findTarget = false;
-    for(var i = 0; i < len; i++){
-        end = i;
-        if(queue[i].getAttribute('data') == searchTarget){
-            findTarget = true;
-            console.log('find search!');
-            break;
-        }
-    }
-    return animateSearch(queue.slice(start, end+1), findTarget);
-}
-
-var $ = function (element) {
-    return document.getElementById(element);
-};
-
-function addEvent(element, event, listener) {
-    if(element.addEventListener) {
-        element.addEventListener(event, listener);
-    }else{
-        element['on' + event] = listener;
-    }
-}
-
-function addClickEvent(element, listener) {
-    addEvent(element, 'click', listener);
-}
-
-//清除动画
-function cleanAnimation(preAnimate) {
-    clearInterval(preAnimate);
-    var focus = document.getElementById('focus');
-    if(focus){
-        focus.id = '';
-    }
-
-    focus = $('highlight');
-    if(focus){
-        focus.id = '';
-    }
-}
-
-//将json树渲染到网页
-function renderTree(data, parentElement){
-    // var data = {
-    //     'root': {
-    //         'a': {
-    //             'a1': 'a1',
-    //             'a2': 'a2'
-    //         },
-    //         'b': {
-    //             'b1': {
-    //                 'b1.1': 'b1.1',
-    //                 'b1.2': 'b1.2',
-    //                 'b1.3': 'b1.3'
-    //             },
-    //             'b2': {
-    //                 'b2.1': 'b2.1'
-    //             }
-    //         }
-    //     }
-    // };
-    var key;
-    var treeView;
-    for(key in data){
-        if(data.hasOwnProperty(key)){
-            if(key != 'view'){
-                treeView = document.createElement('div');
-                treeView.className='child';
-                treeView.innerHTML = key;
-                parentElement.appendChild(treeView);
-                data[key].view = treeView;
-                data[key].view.setAttribute('data', key.toString());
-                renderTree(data[key], treeView);
-            }
-        }
-    }
-}
-
-//生成二叉树遍历序列
+//生成树遍历序列算法
 var traversal = {
     preorderTraversal: function preorderTraversal(root){
         var traverseQueue = [];
@@ -159,38 +42,154 @@ var traversal = {
     }
 };
 
+//初始化一个二叉树并绑定事件
+function initTree(data){
 
-//动画显示二叉树遍历序列
-function animateTraverse(traverseQueue, highlightLast){
-    var start = 0;
-    var time;
-    var end = traverseQueue.length;
-    var preNode = null;
+    var rootView = document.getElementById('root');
+    rootView.innerHTML = '';
+    renderTree(data,rootView);
+    var preAnimate;
+    var animator = new TreeAnimator();
+    //当树渲染完成后再绑定遍历按钮的事件。
+    addClickEvent($('preorderTraversal'), function () {
+        animator.animateTraverse(traversal.preorderTraversal(data), false);
+        // cleanAnimation(preAnimate);
+        // preAnimate = animateTraverse(traversal.preorderTraversal(data));
+    });
 
-    time = setInterval(function () {
-        if(preNode != null){
-            preNode.id = '';
-            //preNode.classList.remove('focus');
+    addClickEvent($('postorderTraversal'), function () {
+        animator.animateTraverse(traversal.postorderTraversal(data), false);
+    });
+
+    addClickEvent($('preordersearchBtn'), function () {
+        // cleanAnimation(preAnimate);
+        // preAnimate = searchTree(traversal.preorderTraversal, data);
+        var searchResult = searchTree(traversal.preorderTraversal, data);
+        animator.animateTraverse(searchResult.result, searchResult.isFindTarget);
+    });
+
+    addClickEvent($('postordersearchBtn'), function () {
+        // cleanAnimation(preAnimate);
+        // preAnimate = searchTree(traversal.postorderTraversal, data);
+        var searchResult = searchTree(traversal.postorderTraversal, data);
+        animator.animateTraverse(searchResult.result, searchResult.isFindTarget);
+    });
+}
+
+//搜索内容，生成搜索队列
+function searchTree(queryMethod,data) {
+
+    var searchTarget = $('searchText').value;
+    var queue = queryMethod(data);
+    var len = queue.length;
+    var start=0, end=0;
+
+    var findTarget = false;
+    for(var i = 0; i < len; i++){
+        end = i;
+        if(queue[i].getAttribute('data') == searchTarget){
+            findTarget = true;
+            console.log('find search!');
+            break;
         }
-        if(start < end){
-            //traverseQueue[start].view.classList.add('focus');
-            traverseQueue[start].id='focus';
-            preNode =traverseQueue[start];
-            start++;
-        }else{
-            clearInterval(time);
-            if(highlightLast){
-                traverseQueue[end-1].id='highlight';
+    }
+    return {result: queue.slice(start, end +1), isFindTarget: findTarget};
+}
+
+var $ = function (element) {
+    return document.getElementById(element);
+};
+
+function addEvent(element, event, listener) {
+    if(element.addEventListener) {
+        element.addEventListener(event, listener);
+    }else{
+        element['on' + event] = listener;
+    }
+}
+
+function addClickEvent(element, listener) {
+    addEvent(element, 'click', listener);
+}
+
+
+//将json树渲染到网页
+function renderTree(data, parentElement){
+    // var data = {
+    //     'root': {
+    //         'a': {
+    //             'a1': 'a1',
+    //             'a2': 'a2'
+    //         },
+    //         'b': {
+    //             'b1': {
+    //                 'b1.1': 'b1.1',
+    //                 'b1.2': 'b1.2',
+    //                 'b1.3': 'b1.3'
+    //             },
+    //             'b2': {
+    //                 'b2.1': 'b2.1'
+    //             }
+    //         }
+    //     }
+    // };
+    var key;
+    var treeView;
+    for(key in data){
+        if(data.hasOwnProperty(key)){
+            if(key != 'view'){
+                treeView = document.createElement('div');
+                treeView.className='child';
+                treeView.innerHTML = key;
+                parentElement.appendChild(treeView);
+                data[key].view = treeView;
+                data[key].view.setAttribute('data', key.toString());
+                renderTree(data[key], treeView);
             }
-            console.log('animate done');
         }
-    }, 500);
-    return time;
+    }
 }
 
-function animateSearch(searchQueue, highlightLast){
-    return animateTraverse(searchQueue, highlightLast);
-}
+//封装动画对象
+var TreeAnimator = function () {
+    var preAnimate;
+    var animatingElement;
+
+    function cleanAnimation() {
+        clearInterval(preAnimate);
+        if(animatingElement){
+            animatingElement.id = '';
+        }
+    }
+
+    this.animateTraverse = function (traverseQueue, highlightLast){
+        cleanAnimation();
+        var start = 0;
+        var end = traverseQueue.length;
+        var preNode = null;
+
+        preAnimate = setInterval(function () {
+            if(preNode != null){
+                preNode.id = '';
+                //preNode.classList.remove('focus');
+            }
+            if(start < end){
+                //traverseQueue[start].view.classList.add('focus');
+                traverseQueue[start].id='focus';
+                animatingElement = traverseQueue[start];
+                preNode =traverseQueue[start];
+                start++;
+            }else{
+                clearInterval(preAnimate);
+                if(highlightLast){
+                    traverseQueue[end-1].id='highlight';
+                    animatingElement = traverseQueue[end-1];
+                }
+                console.log('animate done');
+            }
+        }, 500);
+    };
+};
 
 function init() {
     var data = {
@@ -213,6 +212,7 @@ function init() {
             }
         }
     };
+
     initTree(data);
 }
 
