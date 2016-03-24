@@ -45,10 +45,8 @@ function addAqiData() {
  */
 function isEmpty(obj) {
     for (var cur in obj) {
-        console.log("bitch");
         return false;
     }
-    console.log("fuck");
     return true;
 } 
 
