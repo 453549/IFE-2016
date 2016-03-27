@@ -61,22 +61,20 @@ var validate = {
         return regex.test(str);
     },
     
-    correctMessage: function (input, status, targetStr) {
-        input.className = "correctInput";
-        status.className = "status correctSta";
-        status.innerHTML = targetStr;
-    },
-
-    wrongMessage: function (input, status, targetStr) {
-        input.className = "wrongInput";
-        status.className = "status wrongSta";
-        status.innerHTML = targetStr;
+    allVali: function () {
+        var inputArray = document.querySelectorAll("input");
+        var count = 0;
+        for (var cur = 0; cur < inputArray.length; cur++) {
+            if (inputArray[cur].className == "correctInput") {
+                count++;
+            }
+        }
+        return (count === inputArray.length);
     }
     
 }
 
-function formFactory(source) {
-    var data = source;
+function formFactory(data) {
     var whole = {
         settings: {
             label: data.label,
@@ -85,6 +83,7 @@ function formFactory(source) {
             validator: data.validator,
             rules: data.rules,
             success: data.success,
+            empty: data.empty,
             fail: data.fail
         },
         
@@ -103,6 +102,7 @@ function formFactory(source) {
             input.id = that.settings.name;
             
             addEvent(input, "focus", function() {
+                input.className = "inputFocus";
                 p.innerText = that.settings.rules;
             }, true);
             addEvent(input, "blur", function() {
@@ -122,7 +122,10 @@ function formFactory(source) {
                 else {
                     input.className = "wrongInput";
                     p.className = "status wrongSta";
-                    p.innerText = that.settings.fail;
+                    if (this.value.length == 0) {
+                        p.innerText = that.settings.empty;
+                    }
+                    else p.innerText = that.settings.fail;
                 }
             }, true);
             
@@ -130,6 +133,21 @@ function formFactory(source) {
             label.appendChild(span);
             label.appendChild(input);
             container.appendChild(p);
+        },
+        
+        generateButton: function() {
+            var that = this;
+            var container = document.getElementById("father");
+            var button = document.createElement("button");
+            button.innerHTML = that.settings.label;
+            
+            addEvent(button, "click", function() {
+                if (that.settings.validator()) {
+                    alert("提交成功!");
+                }
+                else alert("提交失败!");
+            }, false);
+            container.appendChild(button);
         },
         
         init: function() {
@@ -151,6 +169,9 @@ function formFactory(source) {
                 case 'telephone':
                     that.generateInput('single');
                     break;
+                case 'submit':
+                    that.generateButton();
+                    break;
             }
         }
     }
@@ -162,65 +183,3 @@ window.onload = function() {
         formFactory(data[i]);
     }
 }
-
-/*var events = {
-    submit: function (e) {
-        var inputArray = document.getElementsByTagName("input");
-        inputArray = [].slice.call(inputArray, 0);      //important !!
-        var isCorrect = true;
-        console.log(inputArray);
-        for (var cur in inputArray) {
-            if (inputArray[cur].className !== "correctInput") {
-                isCorrect = false;
-                break;
-            }
-        }
-        if (isCorrect) {
-            alert("提交成功");
-        }
-        else alert("提交失败");
-    },
-    
-    inputFocus: function (e) {
-        e = e || window.event;
-        var target = e.target || e.srcElement;
-        if (target.tagName.toLowerCase() === "input") {
-            target.className = 'inputFocus';
-            var status = (target.parentElement.nextElementSibling) || (target.parentElement.nextSibling);
-            status.innerText = target;
-        }
-    },
-    
-    inputBlur: function (e) {
-        e = e || window.event;
-        var target = e.target || e.srcElement;
-        if (target.tagName.toLowerCase() === "input") {
-            var status = (target.parentElement.nextElementSibling) || (target.parentElement.nextSibling);
-            switch (target.name) {
-                case "name":
-                    validate.nameVali(target, status);
-                    break;
-                case "password":
-                    validate.passwordVali(target, status);
-                    break;
-                case "repassword":
-                    validate.repasswordVali(target, status);
-                    break;    
-                case "email":
-                    validate.emailVali(target, status);
-                    break;   
-                case "tel":
-                    validate.telephoneVali(target, status);
-                    break;   
-                default: break;    
-            }
-        }      
-    }
-}
-
-
-    var form = document.getElementById("form-container");
-    var button = document.getElementById("submit");
-    addEvent(form, "focus", events.inputFocus, true);
-    addEvent(form, "blur", events.inputBlur, true);
-    addEvent(button, "click", events.submit, false);*/
