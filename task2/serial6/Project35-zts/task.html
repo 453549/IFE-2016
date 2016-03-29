@@ -91,7 +91,7 @@
                 position: relative;
             }
             
-            #command-container .command-row {
+            #command-container #command-row {
                 width: 20px;
                 height: 140px;
                 top: 0;
@@ -155,7 +155,7 @@
             <button id="refresh">Refresh</button>
             <label>开启键盘操作<input type="checkbox" id="keyboard-ctrl" checked></label>
             <div id="command-container">
-                <ol class="command-row"><li></li><li></li></ol>
+                <ol id="command-row"></ol>
                 <textarea id="commandInput"></textarea>
             </div>    
         </div>

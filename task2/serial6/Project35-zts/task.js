@@ -147,6 +147,11 @@ window.onload = function() {
     var queue = [];
     var timer = null;
     
+    function clearCommand() {
+        document.getElementById("commandInput").value = "";
+        document.getElementById("command-row").innerHTML = "";
+    }
+    
     function getCommand() {
         var inputValue = (document.getElementById("commandInput").value).toUpperCase();
         var inputArray = inputValue.split("\n");
@@ -172,7 +177,6 @@ window.onload = function() {
                 clearTimeout(timer);
                 timer = null;
                 var cur = queue.shift();
-                console.log(cur);
                 switch(cur) {
                     case 'GO': command.commandGo(111); break;
                     case 'TRA TOP': command.commandTraTop(); break;
@@ -186,7 +190,7 @@ window.onload = function() {
                     case 'MOV LEF': command.commandMovLef(); break;
                     case 'MOV RIG': command.commandMovRig(); break;
                     case 'MOV BAC': command.commandMovBac(); break;
-                    default: alert("输入的指令有误！"); break;   
+                    default: alert("输入的指令有误！"); throwError(cur); queue = []; break;   
                 }
                 if (queue.length) {
                     dealCommand();
@@ -194,6 +198,18 @@ window.onload = function() {
             }, 500);
         }
     };
+
+    function throwError(error) {
+        console.log(error);
+        var lineObj = document.getElementsByClassName("line");
+        var command = document.getElementById("commandInput").value.split("\n");
+        for (var cur = 0; cur < command.length; cur++) {
+            console.log(command[cur].replace(/\s+\d+\s*/g, ''));
+            if (error == command[cur].toUpperCase() || error == command[cur].replace(/\s+\d+\s*/g, '').toUpperCase()) {
+                lineObj[cur].style.background = "red";
+            }
+        }
+    }    
     
     //键盘操作
     function keyboardCtrl(e) {
@@ -214,20 +230,52 @@ window.onload = function() {
         }
     }
     
-    addEvent(document.getElementById("keyboard-ctrl"), "click", checkCtrl);
-    
-    //绑定提交执行命令的按钮事件
-    addEvent(submit, "click", getCommand);
-    
     //方向键上下左右：GO, TUNBAC, TUNLEF, TUNRIG
     //键盘IJKL：TRATOP, TRABAC, TRALEF, TRARIG
     function checkCtrl(){
-        console.log("111");
         if (document.getElementById("keyboard-ctrl").checked) {
             addEvent(document, "keyup", keyboardCtrl);
         }
         else removeEvent(document, "keyup", keyboardCtrl);
     }
+    
+    function updateLineNumber(number) {
+        var target = document.getElementById("command-row");
+        target.innerHTML = "";
+        for (var cur = 0; cur < number; cur++) {
+            var li = document.createElement("li");
+            li.className = "line";
+            li.style.height = "15px";
+            li.style.marginTop = "0px";
+            var txt = document.createTextNode(cur + 1);
+            li.appendChild(txt);
+            target.appendChild(li);
+        }
+    }
+    
+    function syncScroll() {
+        var target = document.getElementById("command-row");
+        var lineObj = document.getElementsByClassName("line");
+        var command = document.getElementById("commandInput");
+        lineObj[0].style.marginTop = -command.scrollTop + "px";
+    }
+    
+    addEvent(document.getElementById("keyboard-ctrl"), "click", checkCtrl);
+    
+    addEvent(document.getElementById("refresh"), "click", clearCommand);
+    
+    addEvent(document.getElementById("commandInput"), "scroll", syncScroll);
+    
+    addEvent(document.getElementById("commandInput"), "keydown", function() {
+        setTimeout(function(){
+            var input = document.getElementById("commandInput").value;
+            input.match(/\n/g) ? updateLineNumber(input.match(/\n/g).length+1) : updateLineNumber(1);
+            syncScroll();
+        }, 0)
+    })
+    
+    //绑定提交执行命令的按钮事件
+    addEvent(submit, "click", getCommand);
     
     init();
     checkCtrl();
