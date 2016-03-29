@@ -39,13 +39,17 @@ function Queue(container, isDelDiv) {
     this.str = [];
     
     this.leftPush = function(obj) {
-        this.str.unshift(obj);
-        this.paint();
+        if (obj.length) {
+            this.str.unshift(obj);
+            this.paint();
+        }
     };
         
     this.rightPush = function(obj) {
-        this.str.push(obj);
-        this.paint();
+        if (obj.length) {
+            this.str.push(obj);
+            this.paint();
+        }
     };
         
     this.isEmpty = function() {
