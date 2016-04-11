@@ -45,10 +45,15 @@ function addAqiData() {
  */
 function isEmpty(obj) {
     for (var cur in obj) {
+<<<<<<< HEAD
+        return false;
+    }
+=======
         console.log("bitch");
         return false;
     }
     console.log("fuck");
+>>>>>>> hellozts4120/gh-pages
     return true;
 } 
 
