@@ -47,7 +47,7 @@ var tableAction = {
             if (document.documentElement.scrollTop + document.body.scrollTop > targetForm.offsetTop) {
                 lockedForm.style.position = "fixed";
                 lockedForm.style.left = targetForm.offsetLeft;
-                tableAction.addLockTableRow(0);
+                tableAction.addLockTableRow(rowId);
             }
         }
     }
