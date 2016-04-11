@@ -18,7 +18,6 @@ window.onload = function () {
 
     $(".show-dialog").addEventListener("click", function () {
         $(".dialog").style.display='block';
-        $(".dialog").style.opacity='1';
     },false);
 
     $(".dialog").addEventListener("click", function (e) {
