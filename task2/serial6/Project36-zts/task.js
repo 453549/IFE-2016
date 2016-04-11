@@ -29,6 +29,12 @@ function removeEvent(element, event, listener) {
     }
 }
 
+function trim(str) {
+    var regex1 = /^\s*/;
+    var regex2 = /\s*$/;
+    return (str.replace(regex1, "")).replace(regex2, "");
+}
+
 //初始化网格页面
 function init() {
     var row = document.getElementsByTagName("li");
@@ -60,6 +66,8 @@ function setDirection(degree) {
 var command = {
     commandGo: function(num) {
         var degree = parseInt((car.style.transform).match(/[-]*\d+/g)[0]);
+        var row = document.getElementsByTagName("li");
+        var coord = getCoord();
         if (num !== 111) {
             degree = num;
         }
@@ -68,6 +76,10 @@ var command = {
             case 0: {
                 if (car.style.top === '40px') {
                     alert("已到达边缘，不能前进！");
+                    return false;
+                }
+                else if ((row[coord[1]+9]).childNodes[coord[0]].className == "wall") {
+                    alert("有墙，不能前进！");
                     return false;
                 }
                 car.style.top = (parseInt(car.style.top) - 40) + 'px';
@@ -79,6 +91,10 @@ var command = {
                     alert("已到达边缘，不能前进！");
                     return false;
                 }
+                else if ((row[coord[1]+10]).childNodes[coord[0]+1].className == "wall") {
+                    alert("有墙，不能前进！");
+                    return false;
+                }
                 car.style.left = (parseInt(car.style.left) + 40) + 'px';
                 break;
             }            
@@ -88,6 +104,10 @@ var command = {
                     alert("已到达边缘，不能前进！");
                     return false;
                 }
+                else if ((row[coord[1]+11]).childNodes[coord[0]].className == "wall") {
+                    alert("有墙，不能前进！");
+                    return false;
+                }
                 car.style.top = (parseInt(car.style.top) + 40) + 'px';
                 break;
             }
@@ -95,6 +115,10 @@ var command = {
             case 270: {
                 if (car.style.left === '0px') {
                     alert("已到达边缘，不能前进！");
+                    return false;
+                }
+                else if ((row[coord[1]+10]).childNodes[coord[0]-1].className == "wall") {
+                    alert("有墙，不能前进！");
                     return false;
                 }
                 car.style.left = (parseInt(car.style.left) - 40) + 'px';
@@ -198,6 +222,28 @@ var command = {
         this.commandGo(111);
     }
 }
+
+//create wall randomly...
+function randomCreateWall() {
+    var row = document.getElementsByTagName("li");
+    for (var i = 10; i < row.length; i++) {
+        for (var j = 0; j < row[i].childNodes.length; j++) {
+            row[i].childNodes[j].className = "";
+            row[i].childNodes[j].style.background = "";
+        }
+    }
+    
+    //随机生成的墙的总数不超过20
+    var number = Math.ceil(Math.random() * 10) + 10;
+    var coord = getCoord();
+    while(number) {
+        var x = Math.ceil(Math.random() * 9);
+        var y = Math.ceil(Math.random() * 9);
+        if (x == coord[0] || y == coord[1]) continue;
+        row[x + 10].childNodes[y].className = "wall";
+        number--;
+    }
+}
     
 function clearCommand() {
     document.getElementById("commandInput").value = "";
@@ -208,7 +254,7 @@ function getCommand() {
     var inputValue = (document.getElementById("commandInput").value).toUpperCase();
     var inputArray = inputValue.split("\n");
     for (var cur = 0; cur < inputArray.length; cur++) {
-        if (/\d+/.test(inputArray[cur]) && !(/TUN/.test(inputArray[cur])) && !(/BUILD/.test(inputArray[cur])) && !(/BRU/.test(inputArray[cur]))) {
+        if (/\d+/.test(inputArray[cur]) && !(/TUN/.test(inputArray[cur])) && !(/BUILD/.test(inputArray[cur])) && !(/BRU/.test(inputArray[cur])) && !(/MOV TO/.test(inputArray[cur]))) {
             for (var i = 0; i < inputArray[cur].match(/\d+/); i++) {
                 dealCommand(inputArray[cur].replace(/\s+\d+\s*/g, ''));
             }
@@ -228,7 +274,7 @@ function dealCommand(input) {
         return timer = setTimeout(function(){
             clearTimeout(timer);
             timer = null;
-            var cur = queue.shift();
+            var cur = trim(queue.shift());
             if (/BRU/.test(cur)) {
                 var str = cur.split(" ");
                 cur = "WRONG";
@@ -236,6 +282,10 @@ function dealCommand(input) {
                     cur = "BRU";
                     var key = str[1];
                 }
+            }
+            if (/MOV TO/.test(cur) && cur.match(/\d+/g) && cur.match(/\d+/g).length == 2) {
+                var key = cur.match(/\d+/g);
+                cur = "MOV TO";
             }
             switch(cur) {
                 case 'GO': command.commandGo(111); break;
@@ -252,6 +302,7 @@ function dealCommand(input) {
                 case 'MOV BAC': command.commandMovBac(); break;
                 case 'BUILD': var coord = command.commandGetWallPos(); command.commandMakeWall(coord); break;
                 case 'BRU': var coord = command.commandGetWallPos(); command.commandBrushWall(key, coord); break;
+                case 'MOV TO': console.log(key); break; //need implement...
                 default: alert("输入的指令有误！"); throwError(cur); queue = []; break;   
             }
             if (queue.length) {
@@ -323,6 +374,8 @@ function syncScroll() {
 addEvent(document.getElementById("keyboard-ctrl"), "click", checkCtrl);
 
 addEvent(document.getElementById("refresh"), "click", clearCommand);
+
+addEvent(document.getElementById("create-wall"), "click", randomCreateWall);
 
 addEvent(document.getElementById("commandInput"), "scroll", syncScroll);
 
