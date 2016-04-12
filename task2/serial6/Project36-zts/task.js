@@ -302,7 +302,7 @@ function dealCommand(input) {
                 case 'MOV BAC': command.commandMovBac(); break;
                 case 'BUILD': var coord = command.commandGetWallPos(); command.commandMakeWall(coord); break;
                 case 'BRU': var coord = command.commandGetWallPos(); command.commandBrushWall(key, coord); break;
-                case 'MOV TO': console.log(key); break; //need implement...
+                case 'MOV TO': var coord = getCoord(); BFS(coord, key); break; //need implement...
                 default: alert("输入的指令有误！"); throwError(cur); queue = []; break;   
             }
             if (queue.length) {
