@@ -1,3 +1,7 @@
+var lockedForm = $("#locked-form");
+var targetForm = $("#target-form");
+lockedForm.style.left = targetForm.offsetLeft + "px";
+
 
 var tableAction = {
     
@@ -34,8 +38,7 @@ var tableAction = {
     },
     
     checkLockTable: function(rowId) {    
-        var lockedForm = $("#locked-form");
-        var targetForm = $("#target-form");
+        lockedForm.style.left = targetForm.offsetLeft + "px";
         var toTop = document.documentElement.scrollTop + document.body.scrollTop;
         if (toTop > targetForm.offsetTop + targetForm.clientHeight || toTop < targetForm.offsetTop) {
             lockedForm.innerHTML = "";
@@ -46,7 +49,6 @@ var tableAction = {
             if (lockedForm.style.position == "fixed") return;
             if (document.documentElement.scrollTop + document.body.scrollTop > targetForm.offsetTop) {
                 lockedForm.style.position = "fixed";
-                lockedForm.style.left = targetForm.offsetLeft;
                 tableAction.addLockTableRow(rowId);
             }
         }
@@ -54,6 +56,10 @@ var tableAction = {
 }
 
 window.onscroll = function() {
+    tableAction.checkLockTable(0);
+}
+
+window.onresize = function() {
     tableAction.checkLockTable(0);
 }
 
