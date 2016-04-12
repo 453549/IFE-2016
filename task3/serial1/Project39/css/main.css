@@ -47,34 +47,34 @@ body *{
     cursor: pointer;
 }
 
-#target-form th i {
-    float: right;
+#locked-form {
+    width: auto;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    margin: 0 auto;
+    top: 0;
 }
 
-.arrow-down {
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 15px solid black;
-    font-size: 0;
-    line-height: 0;
+#locked-form tr, #locked-form td , #locked-form th {
+    width: 70px;
+    height: 25px;
+    margin: 0;
+    padding: 5px 10px;
+    border-right:1px solid black;
+    border-bottom:1px solid black;
 }
 
-.arrow-up {    
-    width: 0;     
-    height: 0;     
-    border-left: 6px solid transparent;    
-    border-right: 6px solid transparent; 
-    border-bottom: 15px solid black;   
-    font-size: 0;    
-    line-height: 0;    
-} 
-
-.arrow-down:hover {
-    border-top: 15px solid yellow;  
+#locked-form td {
+    text-align: center;
 }
 
-.arrow-up:hover {
-    border-bottom: 15px solid yellow;  
+#locked-form th {
+    background: grey;
+    color: white;
+}
+
+#locked-form th:hover{
+    font-weight: bold;
+    background: red;
+    cursor: pointer;
 }
