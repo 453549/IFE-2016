@@ -1,38 +1,74 @@
 
-var prompt = {
+function prompt() {
     
-    showPrompt: function() {
-        $("#prompt").style.display = "block";
-    },
+    var that = this;
+    this.mainPrompt = document.createElement("div");
+    
+    this.showPrompt = function() {
+        that.mainPrompt.style.display = "block";
+    };
 
-    hidePrompt: function() {
-        $("#prompt").style.display = "none";
-    },
+    this.hidePrompt = function() {
+        that.mainPrompt.style.display = "none";
+    };
 
-    changePrompt: function() {
-        $("#prompt-window").style.marginTop = document.body.clientHeight * 0.4 + "px";
-        $("#prompt-window").style.marginBottom = document.body.clientHeight * 0.4 + "px";
-        $("#prompt-window").style.marginLeft = document.body.clientWidth * 0.3 + "px";
-        $("#prompt-window").style.marginRight = document.body.clientWidth * 0.3 + "px";
-    }
-}
-
-function delegateEvent() {
-
-    addEvent($("#prompt-show"), "click", prompt.showPrompt);
-
-    addEvent($("#prompt"), "click", function(e) {
-        e = e || window.event;
-        var tagChild = e.srcElement || e.target;
-        if (!(tagChild.id == "prompt-header" || tagChild.id == "prompt-body" || tagChild.id == "prompt-title")) {
-            prompt.hidePrompt();
+    this.changePrompt = function() {
+        that.mainPrompt.firstChild.style.marginTop = document.body.clientHeight * 0.4 + "px";
+        that.mainPrompt.firstChild.style.marginBottom = document.body.clientHeight * 0.4 + "px";
+        that.mainPrompt.firstChild.style.marginLeft = document.body.clientWidth * 0.3 + "px";
+        that.mainPrompt.firstChild.style.marginRight = document.body.clientWidth * 0.3 + "px";
+    };
+    
+    this.createPrompt = function() {
+        var promptWindow = document.createElement("div");
+        var promptHeader = document.createElement("div");
+        var promptSure = document.createElement("p");
+        var promptCancel = document.createElement("p");
+        var promptBody = document.createElement("div");
+        var promptTitle = document.createElement("p");
+        promptSure.innerHTML = "完成";
+        promptCancel.innerHTML = "取消";
+        promptTitle.innerHTML = "这是弹出层";
+        that.mainPrompt.setAttribute("class", "prompt");
+        promptWindow.setAttribute("class", "prompt-window");
+        promptHeader.setAttribute("class", "prompt-header");
+        promptSure.setAttribute("class", "prompt-yes");
+        promptCancel.setAttribute("class", "prompt-cancel");
+        promptBody.setAttribute("class", "prompt-body");
+        promptTitle.setAttribute("class", "prompt-title");
+        promptHeader.appendChild(promptCancel);
+        promptHeader.appendChild(promptSure);
+        promptBody.appendChild(promptTitle);
+        promptWindow.appendChild(promptHeader);
+        promptWindow.appendChild(promptBody);
+        that.mainPrompt.appendChild(promptWindow);
+    };
+    
+    this.delegateEvent = function() {
+        that.mainPrompt.onclick = function(e) {
+            e = e || window.event;
+            var tagChild = e.srcElement || e.target;
+            if (!(tagChild.className == "prompt-header" || tagChild.className == "prompt-body" || tagChild.className == "prompt-title")) {
+                that.hidePrompt();
+            }
         }
-    });
-
-    addEvent(window, "resize", prompt.changePrompt);
+        
+    };
+    
+    this.init = function() {
+        that.createPrompt();
+        that.delegateEvent();
+        that.changePrompt();
+        that.showPrompt();
+    }
+    
 }
 
 window.onload = function() {
-    prompt.changePrompt();
-    delegateEvent();
+    addEvent($("#prompt-show"), "click", function() {
+        var pro = new prompt();
+        pro.init();
+        document.body.insertBefore(pro.mainPrompt, document.body.firstChild);
+        addEvent(window, "resize", pro.changePrompt);
+    })
 }
