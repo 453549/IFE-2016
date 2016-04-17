@@ -1,9 +1,12 @@
 
-var tableAction = {
+function tableForm(data) {
     
-    allData: [],
+    var that = this;
+    this.allData = [];
+    this.mainTable = document.createElement("table");
 
-    createTable: function() {
+    this.createTable = function() {
+        that.mainTable.setAttribute("class", "target-form");
         var firstTr = document.createElement("tr");
         for (var i = 0; i < data.colName.length; i++) {
             var curTh = document.createElement("th");
@@ -12,13 +15,19 @@ var tableAction = {
                 var i1 = document.createElement("i");
                 var i2 = document.createElement("i");
                 i1.className = "arrow-down";
+                addEvent(i1, "click", function(i) {
+                    return function(){return that.sortTable(i, "asc")};
+                }(i));
                 i2.className = "arrow-up";
+                addEvent(i2, "click", function(i) {
+                    return function(){return that.sortTable(i, "des")};
+                }(i));
                 curTh.appendChild(i1);
                 curTh.appendChild(i2);
             }
             firstTr.appendChild(curTh);
         }
-        $("#target-form").appendChild(firstTr);
+        that.mainTable.appendChild(firstTr);
         for (var i = 0; i < data.rowData.length; i++) {
             var curTr = document.createElement("tr");
             var curData = [];
@@ -28,13 +37,15 @@ var tableAction = {
                 curData.push(((data.rowData)[i])[j]);
                 curTr.appendChild(curTd);
             }
-            tableAction.allData.push(curData);
-            $("#target-form").appendChild(curTr);
+            that.allData.push(curData);
+            that.mainTable.appendChild(curTr);
         }
-    },
+    };
 
-    sortTable: function(sortId, method) {
-        tableAction.allData.sort(function(array1, array2) {
+    this.sortTable = function(sortId, method) {
+        console.log(sortId);
+        console.log(method);
+        that.allData.sort(function(array1, array2) {
             if (method === "des") {
                 return (parseInt(array1[sortId]) <= parseInt(array2[sortId]) ? 1 : -1);
             }
@@ -42,37 +53,29 @@ var tableAction = {
                 return (parseInt(array1[sortId]) <= parseInt(array2[sortId]) ? -1 : 1);
             }
         });
-        tableAction.redrawTable();
-    },
+        that.redrawTable();
+    };
 
-    redrawTable: function() {
-        var rows = $("tr");
+    this.redrawTable = function() {
+        var rows = that.mainTable.childNodes;
         for (var i = 1; i < rows.length; i++) {
             rows[i].innerHTML = "";
             for (var j = 0; j < data.colName.length; j++) {
                 var curTd = document.createElement("td");
-                curTd.innerHTML = ((tableAction.allData)[i - 1])[j];
+                curTd.innerHTML = ((that.allData)[i - 1])[j];
                 rows[i].appendChild(curTd);
             }
         }
-    }
-}
-
-function delegateEvent() {
-    for (var cur = 0; cur < $("i").length; cur++) {
-        addEvent($("i")[cur], "click", function(cur) {
-            if ($("i")[cur].className === "arrow-down") {
-                return function(){return tableAction.sortTable(Math.floor(cur / 2) + 1, "asc")};
-            }
-            else if ($("i")[cur].className === "arrow-up") {
-                return function(){return tableAction.sortTable(Math.floor(cur / 2) + 1, "des")};
-            }
-        }(cur));
+    };
+    
+    this.init = function() {
+        that.createTable();
+        that.sortTable(5, "des");
+        document.body.appendChild(that.mainTable);
     }
 }
 
 window.onload = function() {
-    tableAction.createTable();
-    delegateEvent();
-    tableAction.sortTable(5, "des");
+    var newForm = new tableForm(data);
+    newForm.init();
 }

@@ -16,14 +16,14 @@ body *{
     padding: 10px;
 }
 
-#target-form {
+.target-form {
     width: auto;
     border-left: 1px solid black;
     border-top: 1px solid black;
     margin: 30px auto;
 }
 
-#target-form tr, #target-form td , #target-form th {
+.target-form tr, .target-form td , .target-form th {
     width: 70px;
     height: 25px;
     margin: 0;
@@ -32,22 +32,22 @@ body *{
     border-bottom:1px solid black;
 }
 
-#target-form td {
+.target-form td {
     text-align: center;
 }
 
-#target-form th {
+.target-form th {
     background: grey;
     color: white;
 }
 
-#target-form th:hover{
+.target-form th:hover{
     font-weight: bold;
     background: red;
     cursor: pointer;
 }
 
-#target-form th i {
+.target-form th i {
     float: right;
 }
 
