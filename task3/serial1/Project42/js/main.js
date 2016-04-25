@@ -2,7 +2,8 @@
 //lowerYear: year distance between current year and the minimum year you want to set...
 //type: 0-->classic calendar; 1-->calendar with the function of set time period
 function calendar(selector, upperYear, lowerYear, type) {
-    //first, remove the calendar we already made...(if exists)
+    
+    var that = this;
     this.isShow = 0;
         
     //interface to get the current date's data;
@@ -17,7 +18,7 @@ function calendar(selector, upperYear, lowerYear, type) {
         var setMonth = data.split("-")[1];
         var setDate = data.split("-")[2];
         document.getElementById("date-input").value = currYear + "" + currMonth + "" + currDate;
-        $(".calendarTitle,.select-date").remove();
+        that.hideDOM();
     }
     
     //init DOM of month and year
@@ -37,8 +38,8 @@ function calendar(selector, upperYear, lowerYear, type) {
         }
         else {
             $(selector).append(
-            '<div class="period">最小跨度(默认无限制)<input class="period-input" id="minPeriod">'+
-            '最大跨度(默认无限制)<input class="period-input" id="maxPeriod"></div>'+
+            '<div class="period">最小跨度(默认无限制, 单位天)<input class="period-input" id="minPeriod">'+
+            '最大跨度(默认无限制，单位天)<input class="period-input" id="maxPeriod"></div>'+
             '<div class="calendarTitle">'+
                 '<select id="month"></select>'+
                 '<select id="year"></select>'+
@@ -116,8 +117,6 @@ function calendar(selector, upperYear, lowerYear, type) {
             $(".buttons,.period").remove();
         }
     }
-    
-    var that = this;
     
     function curTime() {
         var now = new Date();
@@ -205,6 +204,12 @@ function calendar(selector, upperYear, lowerYear, type) {
                 else if ((year <= that.startDate[0] && year >= that.endDate[0]) && (month < that.startDate[1] && month >= that.endDate[1] && i > that.endDate[2]) || (month > that.endDate[1] && month <= that.startDate[1] && i < that.startDate[2])) {
                     curTd.className = 'currMonth periodDate';
                 }
+                else if ((year > that.startDate[0] && year <= that.endDate[0]) || (year <= that.startDate[0] && year > that.endDate[0])) {
+                    curTd.className = 'currMonth periodDate';
+                }
+                else if ((year < that.startDate[0] && year >= that.endDate[0]) || (year >= that.startDate[0] && year < that.endDate[0])) {
+                    curTd.className = 'currMonth periodDate';
+                }
                 else {
                     curTd.className = 'currMonth';
                 }
@@ -237,8 +242,13 @@ function calendar(selector, upperYear, lowerYear, type) {
                 that.startDate = [year, month, parseInt(e.target.innerHTML)];
             }
             else {
-                that.endDate = that.startDate;
-                that.startDate = [year, month, parseInt(e.target.innerHTML)];
+                if (isPeriodValidate(that.startDate, [year, month, parseInt(e.target.innerHTML)])) {
+                    that.endDate = that.startDate;
+                    that.startDate = [year, month, parseInt(e.target.innerHTML)];
+                }
+                else {
+                    alert("输入有误，请检查后重新设定！");
+                }
             }
             
             addPeriodDateInfo(year, month);
@@ -249,7 +259,7 @@ function calendar(selector, upperYear, lowerYear, type) {
                 that.startDate = that.endDate;
                 that.endDate = temp;
             }
-            document.getElementById("date-input").value = that.startDate[0] + "年" + that.startDate[1] + "月" + that.startDate[2] + "日" + " To " + that.endDate[0] + "年" + that.endDate[1] + "月" + that.endDate[2] + "日";
+            $("#date-input").val(that.startDate[0] + "年" + that.startDate[1] + "月" + that.startDate[2] + "日" + " To " + that.endDate[0] + "年" + that.endDate[1] + "月" + that.endDate[2] + "日"); 
             that.hideDOM();
             that.isShow = 0;
         })
@@ -257,6 +267,32 @@ function calendar(selector, upperYear, lowerYear, type) {
             that.hideDOM();
             that.isShow = 0;
         })
+    }
+    
+    function isPeriodValidate(time1, time2) {
+        if ($("#maxPeriod").val() == "" && $("#minPeriod").val() == "") {
+            return true;
+        }
+        else {
+            var timeLength = getTimePeriodLength(time1, time2);
+            if ($("#maxPeriod").val() == "") {
+                return timeLength >= parseInt($("#minPeriod").val()) ? true : false;
+            }
+            else if ($("#minPeriod").val() == "") {
+                return timeLength <= parseInt($("#maxPeriod").val()) ? true : false;
+            }
+            else {
+                if (parseInt($("#maxPeriod").val()) < parseInt($("#minPeriod").val())) return false;
+                return (timeLength <= parseInt($("#maxPeriod").val()) && timeLength >= parseInt($("#minPeriod").val())) ? true : false;
+            }
+        }
+    }
+    
+    function getTimePeriodLength(time1, time2) {
+        var timeA = time1[0] + (time1[1] < 10 ? ('/0' + time1[1]) : ('/' + time1[1])) + (time1[2] < 10 ? ('/0' + time1[2]) : ('/' + time1[2]));
+        var timeB = time2[0] + (time2[1] < 10 ? ('/0' + time2[1]) : ('/' + time2[1])) + (time2[2] < 10 ? ('/0' + time2[2]) : ('/' + time2[2]));
+        var res = parseInt((new Date(timeA)).getTime() - (new Date(timeB)).getTime()) / (1000 * 3600 * 24);
+        return (res >= 0) ? res : -1 * res;
     }
     
     function getMonthDate(year, month) {
